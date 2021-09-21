@@ -1,0 +1,10 @@
+FROM alpine/socat:latest
+FROM rabbitmq:latest
+
+WORKDIR /app
+
+COPY . .
+
+CMD [ "pip", "install", "-r", "requirements.txt"]
+
+CMD [ "./master.py" ]

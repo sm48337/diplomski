@@ -1,0 +1,10 @@
+FROM cincan/sleuthkit:latest
+FROM rabbitmq:latest
+
+WORKDIR /app
+
+COPY . .
+
+CMD [ "pip", "install", "-r", "requirements.txt"]
+
+CMD [ "./worker.py" ]

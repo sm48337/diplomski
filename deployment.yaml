@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleuth-deployment
+spec:
+  selector:
+    matchLabels:
+      app: sleuth
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: worker-node
+    spec:
+      containers:
+        - name: control-node
+          image: control_node:latest
+        - name: worker-node
+          image: worker_node:latest
+        - name: rabbitmq
+          image: rabbitmq:3.9.5-management
+          ports:
+            - containerPort: 5672
+              name: amqp
+      imagePullPolicy: IfNotPresent
